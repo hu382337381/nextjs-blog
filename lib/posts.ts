@@ -2,8 +2,8 @@
  * @Author       : 胡昊
  * @Date         : 2022-07-25 17:45:15
  * @LastEditors  : 胡昊
- * @LastEditTime : 2022-07-26 15:12:57
- * @FilePath     : /nextjs-blog/lib/posts.js
+ * @LastEditTime : 2022-07-27 09:16:08
+ * @FilePath     : /nextjs-blog/lib/posts.ts
  * @Description  :
  */
 
@@ -26,7 +26,7 @@ export const getSortedPostsData = () => {
     // console.log("matterResult", matterResult);
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as { date: string; title: string }),
     };
   });
 
@@ -53,7 +53,7 @@ export const getAllPostIds = () => {
   });
 };
 
-export const getPostData = async (id) => {
+export const getPostData = async (id: string) => {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf-8");
 
@@ -70,6 +70,6 @@ export const getPostData = async (id) => {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as { date: string; title: string }),
   };
 };

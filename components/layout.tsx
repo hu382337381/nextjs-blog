@@ -2,8 +2,8 @@
  * @Author       : 胡昊
  * @Date         : 2022-07-25 14:56:57
  * @LastEditors  : 胡昊
- * @LastEditTime : 2022-07-25 15:58:58
- * @FilePath     : /nextjs-blog/components/layout.js
+ * @LastEditTime : 2022-07-26 18:08:01
+ * @FilePath     : /nextjs-blog/components/layout.tsx
  * @Description  :
  */
 
@@ -12,11 +12,18 @@ import utilStyles from "../styles/utils.module.css";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 const name = "Harmer";
 export const siteTitle = "Next.js Sample Website";
 
-export default ({ children, home }) => {
+export default ({
+  children,
+  home,
+}: {
+  children: ReactNode;
+  home?: boolean;
+}) => {
   return (
     <div className={styles.container}>
       <Head>

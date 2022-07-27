@@ -2,8 +2,8 @@
  * @Author       : 胡昊
  * @Date         : 2022-07-26 11:06:53
  * @LastEditors  : 胡昊
- * @LastEditTime : 2022-07-26 15:16:37
- * @FilePath     : /nextjs-blog/pages/posts/[id].js
+ * @LastEditTime : 2022-07-27 09:19:46
+ * @FilePath     : /nextjs-blog/pages/posts/[id].tsx
  * @Description  :
  */
 
@@ -13,7 +13,11 @@ import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 
-export default ({ postData }) => {
+export default ({
+  postData,
+}: {
+  postData: { title: string; date: string; contentHtml: string };
+}) => {
   return (
     <Layout>
       <Head>
@@ -24,9 +28,8 @@ export default ({ postData }) => {
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
-
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </Layout>
   );
 };
@@ -40,7 +43,7 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const postData = await getPostData(params.id);
+  const postData = await getPostData(params.id as string);
   return {
     props: {
       postData,

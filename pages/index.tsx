@@ -2,8 +2,8 @@
  * @Author       : 胡昊
  * @Date         : 2022-07-25 10:25:52
  * @LastEditors  : 胡昊
- * @LastEditTime : 2022-07-26 15:22:06
- * @FilePath     : /nextjs-blog/pages/index.js
+ * @LastEditTime : 2022-07-27 09:21:55
+ * @FilePath     : /nextjs-blog/pages/index.tsx
  * @Description  :
  */
 import Head from "next/head";
@@ -13,7 +13,11 @@ import Layout, { siteTitle } from "../components/layout";
 import { getSortedPostsData } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 
-export default ({ allPostsData }) => {
+export default ({
+  allPostsData,
+}: {
+  allPostsData: { date: string; title: string; id: string }[];
+}) => {
   return (
     <Layout home>
       <Head>
